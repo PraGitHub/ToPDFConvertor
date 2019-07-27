@@ -1,0 +1,7 @@
+/node_modules
+/images
+/result
+/*.jpg
+/*.jpeg
+/*.png
+/*.pdf
