@@ -1,6 +1,7 @@
 /node_modules
 /images
 /result
+/uploads
 /*.jpg
 /*.jpeg
 /*.png
