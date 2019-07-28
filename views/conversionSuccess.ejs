@@ -43,19 +43,24 @@
         </ul>
         <br>
         <br>
-        <form method="post" action="/download">
-            <div class="form-group">
-                <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%=DummyID %><% } %>" hidden>
-            </div>
-            <div class="form-group">
-                <button class="btn btn-success" onClick="this.disabled=true; this.value='Downloading . . .'; this.form.submit();" type="submit">Download</button>
-            </div>
-        </form>
-        <br>
-        <form method="get" action="/">
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit">Home</button>
-            </div>
-        </form>
+        <ul class="list-group">
+            <li class="list-group-item">
+                <form method="post" action="/download">
+                    <div class="form-group">
+                        <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%=DummyID %><% } %>" hidden>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success" onClick="this.value='Downloading . . .'; this.form.submit();" type="submit">Download</button>
+                    </div>
+                </form>
+            </li>
+            <li class="list-group-item">
+                <form method="get" action="/">
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Go to Home</button>
+                    </div>
+                </form>
+            </li>
+        </ul>
     </body>
 </html>

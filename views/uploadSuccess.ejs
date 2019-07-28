@@ -19,36 +19,53 @@
             </div>
         </div>
         <br>
-        <div class="alert alert-success">
-            <strong>File Uploaded successfully !</strong>
-        </div>
-        <br>
-        <div class="alert alert-info">
-            <strong>Following are the files added</strong>
-        </div>
-        <br>
-        <ul class="list-group">
-            <% if(files){ %>
-                <% files.forEach((file) => { %>
-                    <li class="list-group-item"><%= file %></li>
-                <% }) %>
-            <% } %>
-        </ul>
-        <br>
-        <form method="post" action="/convert">
-            <div class="form-group">
-                <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%=DummyID %><% } %>" hidden>
+        <% if(files.length > 0) { %>
+            <div class="alert alert-success">
+                <strong>File Uploaded successfully !</strong>
             </div>
-            <div class="form-group">
-                <button class="btn btn-success" onClick="this.disabled=true; this.value='Converting . . .'; this.form.submit();" type="submit">Convert</button>
+            <br>
+            <div class="alert alert-info">
+                <strong>Following are the files added</strong>
             </div>
-        </form>
+            <br>
+            <ul class="list-group">
+                <% if(files){ %>
+                    <% files.forEach((file) => { %>
+                        <li class="list-group-item"><%= file %></li>
+                    <% }) %>
+                <% } %>
+            </ul>
+            <br>
 
-        <br>
-        <form method="get" action="/">
-            <div class="form-group">
-                <button class="btn btn-primary" type="submit">Home</button>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <form method="post" action="/convert">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%=DummyID %><% } %>" hidden>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-success" onClick="this.disabled=true; this.value='Converting . . .'; this.form.submit();" type="submit">Convert</button>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+            
+
+        <% }else{ %>
+            <br>
+            <div class="alert alert-danger">
+                <strong>No are the files selected</strong>
             </div>
-        </form>
+        <% } %>
+
+        <ul class="list-group">
+            <li class="list-group-item">
+                <form method="get" action="/">
+                    <div class="form-group">
+                        <button class="btn btn-primary" type="submit">Go to Home</button>
+                    </div>
+                </form>
+            </li>   
+        </ul>   
     </body>
 </html>
