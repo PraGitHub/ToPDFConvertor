@@ -1,11 +1,16 @@
+//upload dir
+process.env.UploadDir = __dirname + '/uploads';
+
 const fs = require('fs');
 const imagesToPdf = require("images-to-pdf");
 const express = require('express');
 const bodyParser = require('body-parser');
 const multer = require('multer');
 const cookieSession = require('cookie-session');
-const randString = require('./randString');
-const UploadArray = require('./upload');
+const randString = require('./lib/randString');
+const UploadArray = require('./lib/upload');
+const Convert2Pdf = require('./lib/convert2Pdf');
+const zipFolder = require('./lib/zipFolder');
 
 const httpPort = process.env.PORT || 8080;
 
@@ -27,10 +32,6 @@ app.use(cookieSession({
 app.listen(httpPort, (err, res) => {
     if(err) throw err;
     console.log('Server @ '+httpPort);
-    if(fs.existsSync(__dirname+'/uploads')==false){
-        fs.mkdirSync(__dirname+'/uploads');
-    }
-    
 });
 
 app.get('/', (req, res) => {
@@ -52,15 +53,38 @@ app.post('/upload', (req, res) => {
     })
 });
 
-app.get('/convert/:id', (req, res) => {
-    const id = req.params.id;
-    if(id){
-        
-    }
-    res.send(req.params.id);
+app.post('/convert', (req, res) => {
+    const id = req.body['id'];
+    console.log('POST /convert :: id = ', id);
+    const Convert2PdfObj = new Convert2Pdf(process.env.UploadDir + '/' + id, (err, outDir, results) => {
+        if (err) {
+            console.log('Convert2Pdf returned an error = ', err);
+            res.render('conversionFailed');
+        } else {
+            //console.log('Output directory = ', outDir);
+            //results.forEach(result => {
+                //console.log('result = ', result);
+            //});
+            res.render('conversionSuccess', {
+                results: results,
+                id: id
+            });
+        }
+    });
 });
 
-app.get('/download/:id', (req, res) => {
-    console.log(req.params.id);
-    res.send(req.params.id);
+app.post('/download', (req, res) => {
+    const id = req.body['id'];
+    console.log('POST /download :: id = ', id);
+    var source = process.env.UploadDir + '/' + id + '/pdf';
+    var destination = process.env.UploadDir + '/' + id + '/' + randString(20) + '.zip';
+    zipFolder(source, destination, (err, result) => {
+        if (err) {
+            console.log('zipFolder returned error = ', err);
+            res.render(err);
+        } else {
+            console.log('zipFolder result = ', result);
+            res.download(result);
+        }
+    });
 });

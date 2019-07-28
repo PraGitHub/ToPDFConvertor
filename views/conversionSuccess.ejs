@@ -5,6 +5,7 @@
         </title>
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -22,14 +23,39 @@
             <strong>Files converted successfully !</strong>
         </div>
         <br>
+        <ul class="list-group">
+            <% if(results){ %>
+                <% results.forEach((result) => { %>
+                    <li class="list-group-item">
+                        <span class="badge badge-dark"><%= result.filename %></span>
+                        <% if(result.success) { %>
+                            <span class="badge badge-success">
+                                success
+                            </span>
+                        <% } else { %>
+                            <span class="badge badge-danger">
+                                failure
+                            </span>
+                        <% } %>
+                    </li>
+                <% }) %>
+            <% } %>
+        </ul>
         <br>
-        <a href="
-            <% if(id){ %>
-                <%= '/download/'+id %>
-            <% }else{ %>
-                <%= '/download/'+DummyID %>
-            <% } %>" class="btn btn-primary">
-             Click here to download
-        </a>
+        <br>
+        <form method="post" action="/download">
+            <div class="form-group">
+                <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%=DummyID %><% } %>" hidden>
+            </div>
+            <div class="form-group">
+                <button class="btn btn-success" onClick="this.disabled=true; this.value='Downloading . . .'; this.form.submit();" type="submit">Download</button>
+            </div>
+        </form>
+        <br>
+        <form method="get" action="/">
+            <div class="form-group">
+                <button class="btn btn-primary" type="submit">Home</button>
+            </div>
+        </form>
     </body>
 </html>
