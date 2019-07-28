@@ -48,6 +48,10 @@ app.get('/', (req, res) => {
     res.render('home');
 });
 
+app.get('/notice', (req, res) => {
+    res.render('notice');
+});
+
 app.post('/upload', (req, res) => { 
     var uploadArrayObj = new UploadArray('FilePath');
     uploadArrayObj.uploadFiles(req, res, (err) => {
