@@ -15,16 +15,16 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <h1>Convert2PDF</h1>
+                <hr class="my-4">
                 <a>Only jpeg, jpg and png are supported as of now</a>
             </div>
         </div>
         <br>
-        <div class="alert alert-success">
-            <strong>Files converted successfully !</strong>
-        </div>
-        <br>
         <ul class="list-group">
             <% if(results){ %>
+                <li class="list-group-item list-group-item-success">
+                    <strong>Files are processed successfully !</strong>
+                </li>
                 <% results.forEach((result) => { %>
                     <li class="list-group-item">
                         <span class="badge badge-dark"><%= result.filename %></span>

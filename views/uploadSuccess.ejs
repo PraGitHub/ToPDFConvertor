@@ -15,23 +15,19 @@
         <div class="jumbotron jumbotron-fluid">
             <div class="container">
                 <h1>Convert2PDF</h1>
+                <hr class="my-4">
                 <a>Only jpeg, jpg and png are supported as of now</a>
             </div>
         </div>
         <br>
         <% if(files.length > 0) { %>
-            <div class="alert alert-success">
-                <strong>File Uploaded successfully !</strong>
-            </div>
-            <br>
-            <div class="alert alert-info">
-                <strong>Following are the files added</strong>
-            </div>
-            <br>
             <ul class="list-group">
+                <li class="list-group-item list-group-item-success">
+                    <strong>Files are uploaded successfully !</strong>
+                </li>
                 <% if(files){ %>
                     <% files.forEach((file) => { %>
-                        <li class="list-group-item"><%= file %></li>
+                        <li class="list-group-item list-group-item-primary"><%= file %></li>
                     <% }) %>
                 <% } %>
             </ul>
