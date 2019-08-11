@@ -71,7 +71,9 @@ app.post('/upload', (req, res) => {
 
 app.post('/convert', (req, res) => {
     const id = req.body['id'];
-    //console.log('POST /convert :: id = ', id);
+    const combine = req.body['combine'];
+    console.log('POST /convert :: id = ', id);
+    console.log('POST /convert :: combine = ', combine);
     const Convert2PdfObj = new Convert2Pdf(process.env.UploadDirActive + '/' + id, (err, outDir, results) => {
         if (err) {
             //console.log('Convert2Pdf returned an error = ', err);
@@ -86,7 +88,7 @@ app.post('/convert', (req, res) => {
                 id: id
             });
         }
-    });
+    }, {combine: (combine == 'on')});
 });
 
 app.post('/download', (req, res) => {

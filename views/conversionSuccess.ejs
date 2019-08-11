@@ -7,6 +7,7 @@
         <link rel="icon" type="image/ico" href="https://raw.githubusercontent.com/PraGitHub/ToPDFConvertor/master/views/icon.png" />
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -28,22 +29,23 @@
                 </li>
                 <% results.forEach((result) => { %>
                     <li class="list-group-item">
+                        <button class="btn btn-outline-success">
+                            <i class="fa fa-file-pdf-o"></i>
+                        </button>
                         <span class="badge badge-dark"><%= result.filename %></span>
                         <% if(result.success) { %>
                             <span class="badge badge-success">
-                                success
+                                <i class="fa fa-check-circle"></i>
                             </span>
                         <% } else { %>
                             <span class="badge badge-danger">
-                                failure
+                                <i class="fa fa-times-circle"></i>
                             </span>
                         <% } %>
                     </li>
                 <% }) %>
             <% } %>
         </ul>
-        <br>
-        <br>
         <ul class="list-group">
             <li class="list-group-item">
                 <form method="post" action="/download">
@@ -51,14 +53,19 @@
                         <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%=DummyID %><% } %>" hidden>
                     </div>
                     <div class="form-group">
-                        <button class="btn btn-success" onClick="this.value='Downloading . . .'; this.form.submit();" type="submit">Download</button>
+                        <button class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Click on this to download the converted files" onClick="this.value='Downloading . . .'; this.form.submit();" type="submit">
+                            Download 
+                            <span class="badge badge-success">
+                                <i class="fa fa-download"></i>
+                            </span>
+                        </button>
                     </div>
                 </form>
             </li>
             <li class="list-group-item">
                 <form method="get" action="/">
                     <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Go to Home</button>
+                        <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Navigate to home page" type="submit">Go to <i class="fa fa-home"></i></button>
                     </div>
                 </form>
             </li>

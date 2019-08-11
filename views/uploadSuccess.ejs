@@ -7,6 +7,7 @@
         <link rel="icon" type="image/ico" href="https://raw.githubusercontent.com/PraGitHub/ToPDFConvertor/master/views/icon.png"/>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
@@ -28,12 +29,17 @@
                 </li>
                 <% if(files){ %>
                     <% files.forEach((file) => { %>
-                        <li class="list-group-item list-group-item-primary"><%= file %></li>
+                        <li class="list-group-item">
+                            <button class="btn btn-outline-success">
+                                <i class="fa fa-file-o"></i>
+                            </button>
+                            <span class="badge badge-dark">
+                                <%= file %>
+                            </span>
+                        </li>
                     <% }) %>
                 <% } %>
             </ul>
-            <br>
-
             <ul class="list-group">
                 <li class="list-group-item">
                     <form method="post" action="/convert">
@@ -41,7 +47,22 @@
                             <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%=DummyID %><% } %>" hidden>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-success" onClick="this.disabled=true; this.value='Converting . . .'; this.form.submit();" type="submit">Convert</button>
+                            <span class="badge badge-success">
+                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box to combine all files into 1 PDF" name="combine" unchecked>
+                            </span>
+                            <label>
+                                <span class="badge badge-warning">
+                                    Combine
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Click on this to convert the files" onClick="this.disabled=true; this.value='Converting . . .'; this.form.submit();" type="submit">
+                                Convert
+                                <span class="badge badge-success">
+                                    <i class="fa fa-arrow-circle-right"></i>
+                                </span>
+                            </button>
                         </div>
                     </form>
                 </li>
@@ -51,7 +72,9 @@
         <% }else{ %>
             <br>
             <div class="alert alert-danger">
-                <strong>No are the files selected</strong>
+                <strong>
+                    No files are selected
+                </strong>
             </div>
         <% } %>
 
@@ -59,7 +82,7 @@
             <li class="list-group-item">
                 <form method="get" action="/">
                     <div class="form-group">
-                        <button class="btn btn-primary" type="submit">Go to Home</button>
+                        <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Navigate to home page" type="submit">Go to <i class="fa fa-home"></i></button>
                     </div>
                 </form>
             </li>   
