@@ -42,7 +42,7 @@
             </ul>
             <ul class="list-group">
                 <li class="list-group-item">
-                    <form method="post" action="/convert">
+                    <form onsubmit="return validate()" method="post" action="/convert">
                         <div class="form-group">
                             <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%=DummyID %><% } %>" hidden>
                         </div>
@@ -57,7 +57,29 @@
                             </label>
                         </div>
                         <div class="form-group">
-                            <button class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Click on this to convert the files" onClick="this.disabled=true; this.value='Converting . . .'; this.form.submit();" type="submit">
+                            <span class="badge badge-success">
+                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box to compress images"
+                                    name="compress" unchecked>
+                            </span>
+                            <label>
+                                <span class="badge badge-warning">
+                                    Compress
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <span class="badge badge-success">
+                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box if you do not want the files to be converted to pdf" name="dontconvert"
+                                    unchecked>
+                            </span>
+                            <label>
+                                <span class="badge badge-warning">
+                                    Don't Convert
+                                </span>
+                            </label>
+                        </div>
+                        <div class="form-group">
+                            <button id="convertButton" class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Click on this to convert the files" type="submit">
                                 Convert
                                 <span class="badge badge-success">
                                     <i class="fa fa-arrow-circle-right"></i>
@@ -104,5 +126,26 @@
                 </h4>
             </div>
         </footer>
+        <script>
+            function validate(){
+                //alert("validate :: begin");
+
+                document.getElementById("convertButton").disabled = true;
+                var compress = document.getElementsByName("compress")[0];
+                var combine = document.getElementsByName("combine")[0];
+                var dontconvert = document.getElementsByName("dontconvert")[0];
+
+                //alert("compress = " + compress.checked);
+                //alert("combine = " + combine.checked);
+                //alert("dontconvert = " + dontconvert.checked);
+                
+                if(combine.checked && dontconvert.checked){
+                    alert("Invalid combination of inputs!");
+                    document.getElementById("convertButton").disabled = false;
+                    return false;
+                }
+                return true;
+            }
+        </script>
     </body>
 </html>

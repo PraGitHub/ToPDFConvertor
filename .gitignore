@@ -9,3 +9,7 @@
 /*.zip
 /lib/uploads*
 /lib/images*
+/lib/experiment
+/lib/log*
+
+!/lib/experiment/*.js

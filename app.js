@@ -5,6 +5,7 @@ const bodyParser = require('body-parser');
 const multer = require('multer');
 const cookieSession = require('cookie-session');
 const rateLimit = require('express-rate-limit');
+const compression = require('compression');
 
 //upload dir
 process.env.UploadDir = __dirname + '/uploads';
@@ -18,6 +19,9 @@ const zipFolder = require('./lib/zipFolder');
 const httpPort = process.env.PORT || 8080;
 
 const app = express();
+
+//configure compression middleware
+app.use(compression());
 
 //configure body parser middleware
 app.use(bodyParser.json());
@@ -71,9 +75,12 @@ app.post('/upload', (req, res) => {
 
 app.post('/convert', (req, res) => {
     const id = req.body['id'];
-    const combine = req.body['combine'];
-    console.log('POST /convert :: id = ', id);
-    console.log('POST /convert :: combine = ', combine);
+    const combine = req.body['combine'] == 'on';
+    const compress = req.body['compress'] == 'on';
+    const dontconvert = req.body['dontconvert'] == 'on';
+
+    console.log('POST /convert :: id = ', id, ' combine = ', combine, ' compress = ', compress, ' dontconvert = ', dontconvert);
+
     const Convert2PdfObj = new Convert2Pdf(process.env.UploadDirActive + '/' + id, (err, outDir, results) => {
         if (err) {
             //console.log('Convert2Pdf returned an error = ', err);
@@ -88,7 +95,10 @@ app.post('/convert', (req, res) => {
                 id: id
             });
         }
-    }, {combine: (combine == 'on')});
+    }, {
+        combine: combine,
+        compress: compress
+    });
 });
 
 app.post('/download', (req, res) => {
