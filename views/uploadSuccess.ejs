@@ -14,101 +14,122 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     </head>
     <body>
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1>Convert2PDF</h1>
-                <hr class="my-4">
-                <a>Only jpeg, jpg and png are supported as of now</a>
-            </div>
-        </div>
-        <br>
-        <% if(files.length > 0) { %>
-            <ul class="list-group">
-                <li class="list-group-item list-group-item-success">
-                    <strong>Files are uploaded successfully !</strong>
-                </li>
-                <% if(files){ %>
-                    <% files.forEach((file) => { %>
-                        <li class="list-group-item">
-                            <button class="btn btn-outline-success">
-                                <i class="fa fa-file-o"></i>
-                            </button>
-                            <span class="badge badge-dark">
-                                <%= file %>
-                            </span>
-                        </li>
-                    <% }) %>
-                <% } %>
-            </ul>
-            <ul class="list-group">
-                <li class="list-group-item">
-                    <form onsubmit="return validate()" method="post" action="/convert">
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%=DummyID %><% } %>" hidden>
-                        </div>
-                        <div class="form-group">
-                            <span class="badge badge-success">
-                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box to combine all files into 1 PDF" name="combine" unchecked>
-                            </span>
-                            <label>
-                                <span class="badge badge-warning">
-                                    Combine
-                                </span>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <span class="badge badge-success">
-                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box to compress images"
-                                    name="compress" unchecked>
-                            </span>
-                            <label>
-                                <span class="badge badge-warning">
-                                    Compress
-                                </span>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <span class="badge badge-success">
-                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box if you do not want the files to be converted to pdf" name="dontconvert"
-                                    unchecked>
-                            </span>
-                            <label>
-                                <span class="badge badge-warning">
-                                    Don't Convert
-                                </span>
-                            </label>
-                        </div>
-                        <div class="form-group">
-                            <button id="convertButton" class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Click on this to convert the files" type="submit">
-                                Convert
-                                <span class="badge badge-success">
-                                    <i class="fa fa-arrow-circle-right"></i>
-                                </span>
-                            </button>
-                        </div>
-                    </form>
-                </li>
-            </ul>
-            
-
-        <% }else{ %>
-            <br>
-            <div class="alert alert-danger">
-                <strong>
-                    No files are selected
-                </strong>
-            </div>
-        <% } %>
-
         <ul class="list-group">
             <li class="list-group-item">
-                <form method="get" action="/">
-                    <div class="form-group">
-                        <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Navigate to home page" type="submit">Go to <i class="fa fa-home"></i></button>
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1>Convert2PDF</h1>
+                        <hr class="my-4">
+                        <a>Only jpeg, jpg and png are supported as of now</a>
                     </div>
-                </form>
-            </li>   
-        </ul>   
+                </div>
+                <% if(files.length > 0) { %>
+                    <ul class="list-group">
+                        <li class="list-group-item list-group-item-success">
+                            <strong>Files are uploaded successfully !</strong>
+                        </li>
+                        <% if(files){ %>
+                            <% files.forEach((file) => { %>
+                                <li class="list-group-item">
+                                    <button class="btn btn-outline-success">
+                                        <i class="fa fa-file-image-o"></i>
+                                    </button>
+                                    <span class="badge badge-light">
+                                        <h6>
+                                            <%= file %>
+                                        </h6>
+                                    </span>
+                                </li>
+                                <% }) %>
+                                    <% } %>
+                    </ul>
+                    <ul class="list-group">
+                        <li class="list-group-item">
+                            <form onsubmit="return validate()" method="post" action="/convert">
+                                <ul class="list-group">
+                                    <li class="list-group-item">
+                                        <div class="form-group">
+                                            <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%=DummyID %><% } %>" hidden>
+                                        </div>
+                                        <div class="form-group">
+                                            <label>
+                                                <span class="badge badge-dark">
+                                                    Options
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <span class="badge badge-success">
+                                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box to combine all files into 1 PDF"
+                                                    name="combine" unchecked>
+                                            </span>
+                                            <label>
+                                                <span class="badge badge-warning">
+                                                    Combine
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <span class="badge badge-success">
+                                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box to compress images" name="compress"
+                                                    unchecked>
+                                            </span>
+                                            <label>
+                                                <span class="badge badge-warning">
+                                                    Compress
+                                                </span>
+                                            </label>
+                                        </div>
+                                        <div class="form-group">
+                                            <span class="badge badge-success">
+                                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box if you do not want the files to be converted to pdf"
+                                                    name="dontconvert" unchecked>
+                                            </span>
+                                            <label>
+                                                <span class="badge badge-warning">
+                                                    Don't Convert
+                                                </span>
+                                            </label>
+                                        </div>
+                                    </li>
+                                    <li class="list-group-item">
+                                        <div class="form-group">
+                                            <button id="convertButton" class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Click on this to proceed with the selected options"
+                                                type="submit">
+                                                Proceed
+                                                <span class="badge badge-success">
+                                                    <i class="fa fa-arrow-circle-right"></i>
+                                                </span>
+                                            </button>
+                                        </div>
+                                    </li>
+                                </ul>
+                            </form>
+                        </li>
+                    </ul>
+                
+            <% }else{ %>
+                <div class="alert alert-danger">
+                    <strong>
+                        No files are selected
+                    </strong>
+                </div>
+            <% } %>
+                
+                <ul class="list-group">
+                    <li class="list-group-item">
+                        <form method="get" action="/">
+                            <div class="form-group">
+                                <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Navigate to home page" type="submit">Go to
+                                    <i class="fa fa-home"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+           
         <footer class="footer">
             <div class="container text-center">
                 <h6>
@@ -139,7 +160,10 @@
                 //alert("combine = " + combine.checked);
                 //alert("dontconvert = " + dontconvert.checked);
                 
-                if(combine.checked && dontconvert.checked){
+                if(
+                    combine.checked && dontconvert.checked ||
+                    dontconvert.checked && !combine.checked && !compress.checked
+                ){
                     alert("Invalid combination of inputs!");
                     document.getElementById("convertButton").disabled = false;
                     return false;

@@ -1,0 +1,177 @@
+<html>
+
+<head>
+    <title>
+        Convert2PDF
+    </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/ico" href="https://raw.githubusercontent.com/PraGitHub/ToPDFConvertor/master/views/icon.png"
+    />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+</head>
+
+<body>
+    <ul class="list-group">
+        <li class="list-group-item">
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1>Convert2PDF</h1>
+                    <hr class="my-4">
+                    <a>Only jpeg, jpg and png are supported as of now</a>
+                </div>
+            </div>
+
+<% if(showCompressionResults){ %>
+    <%if(compressed){%>
+        <ul class="list-group">
+            <li class="list-group-item list-group-item-success">
+                <strong>Files are compressed successfully !</strong>
+            </li>
+            <% compressionResults.forEach((result) => { %>
+                <li class="list-group-item">
+                    <button class="btn btn-outline-success mr-sm-2">
+                        <i class="fa fa-file-image-o"></i>
+                    </button>
+                    <span class="badge badge-light mr-sm-2">
+                        <h6>
+                            <%= result.filename %>
+                        </h6>
+                    </span>
+                    <% if(result.success) { %>
+                        <span class="badge badge-dark mr-sm-2">
+                            <%=result.percentageCompression%> &percnt; compressed
+                        </span>
+                        <span class="badge badge-success mr-sm-2">
+                            <span class="badge badge-dark mr-sm-2">
+                                <%=result.inFileSize%> B
+                            </span>
+                            <a class="mr-sm-2">
+                                <i class="fa fa-long-arrow-right"></i>
+                            </a>
+                            <span class="badge badge-dark">
+                                <%=result.outFileSize%> B
+                            </span>
+                        </span>
+                        <span class="badge badge-success" title="Successful">
+                            <i class="fa fa-check-circle"></i>
+                        </span>
+                        <% } else { %>
+                            <span class="badge badge-danger" title="Failed">
+                                <i class="fa fa-times-circle"></i>
+                            </span>
+                            <% } %>
+                </li>
+                <% }) %>
+        </ul>
+        <%}else{%>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-light">
+                    <span class="badge badge-danger">
+                        <h4>
+                            Unexpected error during compression
+                            <i class="fa fa-times"></i>
+                        </h4>
+                    </span>
+                </li>
+            </ul>
+            <%}%>
+        <%}%>
+        <br>
+        <% if(showConversionResults){ %>
+            <%if(converted){%>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-success">
+                        <strong>Files are converted successfully !</strong>
+                    </li>
+                    <% conversionResults.forEach((result) => { %>
+                        <li class="list-group-item">
+                            <button class="btn btn-outline-success mr-sm-2">
+                                <i class="fa fa-file-pdf-o"></i>
+                            </button>
+                            <span class="badge badge-light mr-sm-2">
+                                <h6>
+                                    <%= result.filename %>
+                                </h6>
+                            </span>
+                            <% if(result.success) { %>
+                                <span class="badge badge-success" title="Successful">
+                                    <i class="fa fa-check-circle"></i>
+                                </span>
+                                <% } else { %>
+                                    <span class="badge badge-danger" title="Failed">
+                                        <i class="fa fa-times-circle"></i>
+                                    </span>
+                                    <% } %>
+                        </li>
+                        <% }) %>
+                </ul>
+                            <%}else{%>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-light">
+                        <span class="badge badge-danger">
+                            <h4>
+                                Unexpected error during conversion
+                                <i class="fa fa-times"></i>
+                            </h4>
+                        </span>
+                    </li>
+                </ul>
+            <%}%>
+        <%}%>
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <form method="post" action="/download">
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%=DummyID %><% } %>" hidden>
+                            <input class="form-control" type="text" name="type" value="<%if(converted){%>converted<%}else if(compressed){%>compressed<%}%>"
+                                hidden>
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Click on this to download the converted files"
+                                onClick="this.value='Downloading . . .'; this.form.submit();" type="submit">
+                                Download
+                                <span class="badge badge-success">
+                                    <i class="fa fa-download"></i>
+                                </span>
+                            </button>
+                        </div>
+                    </form>
+                </li>
+                <li class="list-group-item">
+                    <form method="get" action="/">
+                        <div class="form-group">
+                            <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Navigate to home page" type="submit">Go to
+                                <i class="fa fa-home"></i>
+                            </button>
+                        </div>
+                    </form>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <footer class="footer">
+        <div class="container text-center">
+            <h6>
+                <a style="text-decoration: none" href="https://www.npmjs.com/package/images-to-pdf" target="_blank">
+                    images-to-pdf npm package
+                </a>
+            </h6>
+        </div>
+        <div class="container text-center">
+            <h4>
+                <a style="text-decoration: none" href="https://github.com/PraGitHub/ToPDFConvertor" target="_blank">
+                    Source code
+                    <i class="fa fa-github"></i>
+                </a>
+            </h4>
+        </div>
+    </footer>
+</body>
+
+</html>

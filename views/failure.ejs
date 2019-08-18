@@ -5,7 +5,8 @@
         Convert2PDF
     </title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/ico" href="https://raw.githubusercontent.com/PraGitHub/ToPDFConvertor/master/views/icon.png"/>
+    <link rel="icon" type="image/ico" href="https://raw.githubusercontent.com/PraGitHub/ToPDFConvertor/master/views/icon.png"
+    />
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
@@ -18,17 +19,33 @@
 <body>
     <ul class="list-group">
         <li class="list-group-item">
-            <div class="jumbotron">
-                <h1 class="display-4">404 Error !</h1>
-                <hr class="my-4">
-                <p class="lead">
-                    <strong>Sorry! But the page you are looking for is not found</strong>
-                </p>
-                <br>
-                <a class="btn btn-primary btn-lg" data-toggle="tooltip" data-placement="top" title="Navigate to home page" href="/" role="button">Go to
-                    <i class="fa fa-home"></i>
-                </a>
+            <div class="jumbotron jumbotron-fluid">
+                <div class="container">
+                    <h1>Convert2PDF</h1>
+                    <hr class="my-4">
+                    <a>Only jpeg, jpg and png are supported as of now</a>
+                </div>
             </div>
+            <br>
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-light">
+                    <span class="badge badge-danger">
+                        <h4>
+                            <%=message%>
+                            <i class="fa fa-times"></i>
+                        </h4>
+                    </span>
+                </li>
+                <li class="list-group-item">
+                    <form method="get" action="/">
+                        <div class="form-group">
+                            <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Navigate to home page" type="submit">Go to
+                                <i class="fa fa-home"></i>
+                            </button>
+                        </div>
+                    </form>
+                </li>
+            </ul>
         </li>
     </ul>
     <footer class="footer">

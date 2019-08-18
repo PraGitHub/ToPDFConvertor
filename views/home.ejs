@@ -14,41 +14,46 @@
         <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
     </head>
     <body>
-        <div class="jumbotron jumbotron-fluid">
-            <div class="container">
-                <h1>Convert2PDF</h1>
-                <hr class="my-4">
-                <p>
-                    <a>Only jpeg, jpg and png are supported as of now</a>
-                    <br>
-                    <a style="text-decoration: none" href="/notice" target="_blank">Please read this carefully.</a>
-                </p>
-            </div>
-        </div>
-        <br>
         <ul class="list-group">
-            <li class="list-group-item list-group-item-dark">
-                <strong>Upload file(s)</strong>
-            </li>
             <li class="list-group-item">
-                <form method="post" id="uploadForm" enctype="multipart/form-data" action="/upload">
-                    <div class="form-group">
-                        <label>
-                            <span class="badge badge-dark">
-                                Select files
-                            </span>
-                        </label>
-                        <input class="form-control" name="FilePath" type="file" multiple>
+                <div class="jumbotron jumbotron-fluid">
+                    <div class="container">
+                        <h1>Convert2PDF</h1>
+                        <hr class="my-4">
+                        <p>
+                            <a>Only jpeg, jpg and png are supported as of now</a>
+                            <br>
+                            <a style="text-decoration: none" href="/notice" target="_blank">Please read this carefully.</a>
+                        </p>
                     </div>
-                    <div class="form-group">
-                        <button class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Click on this to upload the seleted files" type="submit">
-                            Upload
-                            <span class="badge badge-success">
-                                <i class="fa fa-upload"></i>
-                            </span>
-                        </button>
-                    </div>
-                </form>
+                </div>
+                <br>
+                <ul class="list-group">
+                    <li class="list-group-item list-group-item-dark">
+                        <strong>Upload file(s)</strong>
+                    </li>
+                    <li class="list-group-item">
+                        <form method="post" id="uploadForm" enctype="multipart/form-data" action="/upload">
+                            <div class="form-group">
+                                <label>
+                                    <span class="badge badge-dark">
+                                        Select files
+                                    </span>
+                                </label>
+                                <input class="form-control" name="FilePath" type="file" accept=".jpg, .png, .jpeg" multiple>
+                            </div>
+                            <div class="form-group">
+                                <button class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Click on this to upload the seleted files"
+                                    type="submit">
+                                    Upload
+                                    <span class="badge badge-success">
+                                        <i class="fa fa-upload"></i>
+                                    </span>
+                                </button>
+                            </div>
+                        </form>
+                    </li>
+                </ul>
             </li>
         </ul>
         <footer class="footer">
