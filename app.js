@@ -1,8 +1,6 @@
 const fs = require('fs');
-const imagesToPdf = require("images-to-pdf");
 const express = require('express');
 const bodyParser = require('body-parser');
-const multer = require('multer');
 const cookieSession = require('cookie-session');
 const rateLimit = require('express-rate-limit');
 const compression = require('compression');
@@ -20,6 +18,9 @@ const zipFolder = require('./lib/zipFolder');
 const httpPort = process.env.PORT || 8080;
 
 const app = express();
+
+//FilePathKey
+process.env.filePathKey = randString(25);
 
 //configure compression middleware
 app.use(compression());
@@ -50,7 +51,9 @@ app.listen(httpPort, (err, res) => {
 });
 
 app.get('/', (req, res) => {
-    res.render('home');
+    res.render('home',{
+        filePathKey: process.env.filePathKey
+    });
 });
 
 app.get('/notice', (req, res) => {
@@ -58,7 +61,7 @@ app.get('/notice', (req, res) => {
 });
 
 app.post('/upload', (req, res) => { 
-    var uploadArrayObj = new UploadArray('FilePath');
+    var uploadArrayObj = new UploadArray(process.env.filePathKey);
     uploadArrayObj.uploadFiles(req, res, (err) => {
         //console.log('dirname = ', uploadArrayObj.dirname, 'files = ', uploadArrayObj.files);
         if (err) {

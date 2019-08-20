@@ -1,20 +1,5 @@
 <html>
-
-<head>
-    <title>
-        Convert2PDF
-    </title>
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="icon" type="image/ico" href="https://raw.githubusercontent.com/PraGitHub/ToPDFConvertor/master/views/icon.png"/>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css">
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js"></script>
-    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
-</head>
-
+<%include partials/head %>
 <body>
     <ul class="list-group">
         <li class="list-group-item">
@@ -48,31 +33,7 @@
             </div>
         </li>
     </ul>
-    
-    <footer class="footer">
-        <div class="container text-center">
-            <h6>
-                <a style="text-decoration: none" href="https://www.npmjs.com/package/images-to-pdf" target="_blank">
-                    images-to-pdf npm package
-                </a>
-            </h6>
-        </div>
-        <div class="container text-center">
-            <h6>
-                <a style="text-decoration: none" href=" https://www.npmjs.com/package/compress-images" target="_blank">
-                    compress-images npm package
-                </a>
-            </h6>
-        </div>
-        <div class="container text-center">
-            <h4>
-                <a style="text-decoration: none" href="https://github.com/PraGitHub/ToPDFConvertor" target="_blank">
-                    Source code
-                    <i class="fa fa-github"></i>
-                </a>
-            </h4>
-        </div>
-    </footer>
+    <% include partials/footer %>
 </body>
 
 </html>
