@@ -19,8 +19,11 @@ const httpPort = process.env.PORT || 8080;
 
 const app = express();
 
-//FilePathKey
-process.env.filePathKey = randString(25);
+//file path key identifier 
+process.env.filePathKeyId = randString(20);
+
+//cookie key
+process.env.cookiePrimaryKey = randString(20);
 
 //configure compression middleware
 app.use(compression());
@@ -35,7 +38,7 @@ app.set('view engine', 'ejs');
 //configure cookie
 app.use(cookieSession({
     maxAge: 10 * 60 * 1000,
-    keys: ['kgaojwarli']
+    keys: [process.env.cookiePrimaryKey]
 }));
 
 //rate limit
@@ -51,8 +54,13 @@ app.listen(httpPort, (err, res) => {
 });
 
 app.get('/', (req, res) => {
+    var filePathKey = req.session[process.env.filePathKeyId];
+    if (!filePathKey){
+        filePathKey = randString(10);
+        req.session[process.env.filePathKeyId] = filePathKey;
+    }
     res.render('home',{
-        filePathKey: process.env.filePathKey
+        filePathKey: filePathKey
     });
 });
 
@@ -61,7 +69,11 @@ app.get('/notice', (req, res) => {
 });
 
 app.post('/upload', (req, res) => { 
-    var uploadArrayObj = new UploadArray(process.env.filePathKey);
+    var filePathKey = req.session[process.env.filePathKeyId];
+    if(!filePathKey){
+        res.redirect('/');
+    }
+    var uploadArrayObj = new UploadArray(filePathKey);
     uploadArrayObj.uploadFiles(req, res, (err) => {
         //console.log('dirname = ', uploadArrayObj.dirname, 'files = ', uploadArrayObj.files);
         if (err) {
