@@ -8,7 +8,7 @@
 <% if(showCompressionResults){ %>
     <%if(compressed){%>
         <ul class="list-group">
-            <li class="list-group-item">
+            <div class="table-responsive">
                 <table class="table table-striped table-hover">
                     <thead>
                         <tr class="table-success">
@@ -67,7 +67,7 @@
                             </tr>
                     </tbody>
                 </table>
-            </li>
+            </div>
         </ul>
         <%}else{%>
             <ul class="list-group">
@@ -86,7 +86,7 @@
         <% if(showConversionResults){ %>
             <%if(converted){%>
                 <ul class="list-group">
-                    <li class="list-group-item">
+                    <div class="table-responsive">
                         <table class="table table-striped table-hover">
                             <thead>
                                 <tr class="table-success">
@@ -121,6 +121,7 @@
                                 <% }) %>
                             </tbody>
                         </table>
+                    </div>
                 </ul>
                             <%}else{%>
                 <ul class="list-group">
