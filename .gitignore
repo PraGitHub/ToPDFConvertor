@@ -12,4 +12,6 @@
 /lib/experiment
 /lib/log*
 
+/temp.html
+
 !/lib/experiment/*.js
