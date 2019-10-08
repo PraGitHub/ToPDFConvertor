@@ -53,52 +53,48 @@
                                             </label>
                                         </div>
                                         <div class="form-group">
-                                            <span class="badge badge-light">
-                                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box to combine all files into 1 PDF"
-                                                    name="combine" unchecked>
-                                            </span>
                                             <label>
-                                                <span class="badge badge-success mr-sm-2">
+                                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top"
+                                                    title="Check this box to combine all files into 1 PDF" name="combine" unchecked>
+                                                <span class="badge badge-success">
                                                     Combine
                                                 </span>
-                                                <span class="badge badge-dark">
-                                                    <a title="Combine" data-toggle="popover" data-trigger="hover" data-content="Check this box to combine all files into 1 PDF">
-                                                        <i class="fa fa-question-circle"></i>
-                                                    </a>
-                                                </span>
                                             </label>
+                                            <span class="badge badge-dark">
+                                                <a title="Combine" data-toggle="popover" data-trigger="hover"
+                                                    data-content="Check this box to combine all files into 1 PDF">
+                                                    <i class="fa fa-question-circle"></i>
+                                                </a>
+                                            </span>
                                         </div>
                                         <div class="form-group">
-                                            <span class="badge badge-light">
-                                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box to compress images" name="compress"
-                                                    unchecked>
-                                            </span>
                                             <label>
+                                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box to compress images"
+                                                    name="compress" unchecked>
                                                 <span class="badge badge-success mr-sm-2">
                                                     Compress
                                                 </span>
-                                                <span class="badge badge-dark">
-                                                    <a title="Compress" data-toggle="popover" data-trigger="hover" data-content="Check this box to compress images">
-                                                        <i class="fa fa-question-circle"></i>
-                                                    </a>
-                                                </span>
                                             </label>
+                                            <span class="badge badge-dark">
+                                                <a title="Compress" data-toggle="popover" data-trigger="hover" data-content="Check this box to compress images">
+                                                    <i class="fa fa-question-circle"></i>
+                                                </a>
+                                            </span>
                                         </div>
                                         <div class="form-group">
-                                            <span class="badge badge-light">
-                                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top" title="Check this box if you do not want the files to be converted to PDF"
-                                                    name="dontconvert" unchecked>
-                                            </span>
                                             <label>
+                                                <input type="checkbox" data-toggle="toggle tooltip" data-placement="top"
+                                                    title="Check this box if you do not want the files to be converted to PDF" name="dontconvert" unchecked>
                                                 <span class="badge badge-success mr-sm-2">
                                                     Don't Convert
                                                 </span>
-                                                <span class="badge badge-dark">
-                                                    <a title="Don't Convert" data-toggle="popover" data-trigger="hover" data-content="Check this box if you do not want the files to be converted to PDF">
-                                                        <i class="fa fa-question-circle"></i>
-                                                    </a>
-                                                </span>
                                             </label>
+                                            <span class="badge badge-dark">
+                                                <a title="Don't Convert" data-toggle="popover" data-trigger="hover"
+                                                    data-content="Check this box if you do not want the files to be converted to PDF">
+                                                    <i class="fa fa-question-circle"></i>
+                                                </a>
+                                            </span>
                                         </div>
                                     </li>
                                     <li class="list-group-item">
@@ -162,8 +158,10 @@
                 }
                 return true;
             }
+        </script>
+        <script>
             $(document).ready(function () {
-                    $('[data-toggle="popover"]').popover();
+                $('[data-toggle="popover"]').popover();
             });
         </script>
     </body>
