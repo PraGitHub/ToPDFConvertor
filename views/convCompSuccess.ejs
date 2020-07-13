@@ -36,25 +36,25 @@
                                 </td>
                                 <% if(result.success) { %>
                                 <td>
-                                    <span class="badge badge-dark mr-sm-2">
+                                    <span class="badge bg-dark mr-sm-2">
                                         <%=result.percentageCompression%> &percnt; compressed
                                     </span>
                                 </td>
                                 <td>
-                                    <span class="badge badge-success mr-sm-2">
-                                        <span class="badge badge-dark mr-sm-2">
+                                    <span class="badge bg-success mr-sm-2">
+                                        <span class="badge bg-dark mr-sm-2">
                                             <%=result.inFileSize%> B
                                         </span>
                                         <a class="mr-sm-2">
                                             <i class="fas fa-long-arrow-alt-right"></i>
                                         </a>
-                                        <span class="badge badge-dark">
+                                        <span class="badge bg-dark">
                                             <%=result.outFileSize%> B
                                         </span>
                                     </span>
                                 </td>
                                 <td>
-                                    <span class="badge badge-success" title="Successful">
+                                    <span class="badge bg-success" title="Successful">
                                         <i class="fas fa-check-circle"></i>
                                     </span>
                                 </td>
@@ -62,7 +62,7 @@
                                 <td></td>
                                 <td></td>
                                 <td>
-                                    <span class="badge badge-danger" title="Failed">
+                                    <span class="badge bg-danger" title="Failed">
                                         <i class="far fa-times-circle"></i>
                                     </span>
                                 </td>
@@ -76,7 +76,7 @@
         <%}else{%>
             <ul class="list-group">
                 <li class="list-group-item list-group-item-light">
-                    <span class="badge badge-danger">
+                    <span class="badge bg-danger">
                         <h4>
                             Unexpected error during compression
                             <i class="far fa-sad-tear"></i>
@@ -116,11 +116,11 @@
                                     </td>
                                     <td>
                                         <% if(result.success) { %>
-                                        <span class="badge badge-success" title="Successful">
+                                        <span class="badge bg-success" title="Successful">
                                             <i class="fas fa-check-circle"></i>
                                         </span>
                                         <% } else { %>
-                                        <span class="badge badge-danger" title="Failed">
+                                        <span class="badge bg-danger" title="Failed">
                                             <i class="far fa-times-circle"></i>
                                         </span>
                                     </td>
@@ -134,7 +134,7 @@
                             <%}else{%>
                 <ul class="list-group">
                     <li class="list-group-item list-group-item-light">
-                        <span class="badge badge-danger">
+                        <span class="badge bg-danger">
                             <h4>
                                 Unexpected error during conversion
                                 <i class="far fa-sad-tear"></i>
@@ -147,29 +147,23 @@
             <ul class="list-group">
                 <li class="list-group-item">
                     <form method="post" action="/download">
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%='DummyID' %><% } %>" hidden>
-                            <input class="form-control" type="text" name="type" value="<%if(converted){%>converted<%}else if(compressed){%>compressed<%}%>"
-                                hidden>
-                        </div>
-                        <div class="form-group">
-                            <button class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Click on this to download the converted files"
-                                onClick="this.value='Downloading . . .'; this.form.submit();" type="submit">
-                                Download
-                                <span class="badge badge-success">
-                                    <i class="fa fa-download"></i>
-                                </span>
-                            </button>
-                        </div>
+                        <input class="form-control" type="text" name="id" value="<% if(id){ %><%=id %><% }else{ %><%='DummyID' %><% } %>" hidden>
+                        <input class="form-control" type="text" name="type" value="<%if(converted){%>converted<%}else if(compressed){%>compressed<%}%>"
+                            hidden>
+                        <button class="btn btn-outline-success" data-toggle="tooltip" data-placement="top" title="Click on this to download the converted files"
+                            onClick="this.value='Downloading . . .'; this.form.submit();" type="submit">
+                            Download
+                            <span class="badge bg-success">
+                                <i class="fa fa-download"></i>
+                            </span>
+                        </button>
                     </form>
                 </li>
                 <li class="list-group-item">
                     <form method="get" action="/">
-                        <div class="form-group">
-                            <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Navigate to home page" type="submit">Go to
-                                <i class="fa fa-home"></i>
-                            </button>
-                        </div>
+                        <button class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="Navigate to home page" type="submit">Go to
+                            <i class="fa fa-home"></i>
+                        </button>
                     </form>
                 </li>
             </ul>
