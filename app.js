@@ -1,4 +1,3 @@
-const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const cookieSession = require('cookie-session');
@@ -50,7 +49,7 @@ app.use(limiter);
 
 app.listen(httpPort, (err, res) => {
     if(err) throw err;
-    //console.log('Server @ '+httpPort);
+    console.log('Express server running on', httpPort);
 });
 
 app.get('/', (req, res) => {
