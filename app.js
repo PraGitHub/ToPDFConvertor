@@ -44,7 +44,7 @@ app.use(cookieSession({
 //rate limit
 const limiter = rateLimit({
     windowMs: 10 * 60 * 1000, // 10 minutes
-    max: 20 // limit each IP to 100 requests per windowMs
+    max: 20 // limit each IP to 20 requests per windowMs
 });
 app.use(limiter);
 

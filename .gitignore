@@ -15,3 +15,5 @@
 /temp.html
 
 !/lib/experiment/*.js
+
+debug
