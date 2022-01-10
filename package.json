@@ -12,7 +12,7 @@
   },
   "dependencies": {
     "body-parser": "^1.19.1",
-    "compress-images": "1.5.8",
+    "compress-images": "1.7.6",
     "compression": "1.7.4",
     "cookie-notice": "^1.3.9",
     "cookie-session": "^2.0.0",
